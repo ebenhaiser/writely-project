@@ -81,10 +81,9 @@ class MessageController extends Controller
             return $user->lastMessage ? $user->lastMessage->created_at : null;
         });
 
-        $users = User::where('id', '!=', Auth::id())->get();
 
 
-        return view('messages', compact('usersWithLastMessage', 'users'));
+        return view('messages', compact('usersWithLastMessage'));
     }
 
     public function messagingWith($username)
