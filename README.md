@@ -1,49 +1,73 @@
-# Writely – Multi-User Blogging Platform
+# Writely - Multi-User Blogging Platform
 
-**Writely** is a dynamic multi-user blogging website designed to provide a seamless platform where users can create, share, and engage with articles across various categories. The website allows users to publish their own articles complete with customizable thumbnails, titles, and categories.
+## Introduction
+Writely is a dynamic multi-user blogging platform that allows users to create, share, and engage with articles across various categories. It provides a seamless experience with real-time interactions, user management, and article customization.
 
 ## Features
-- **User-generated article posting** with categories and thumbnail support
-- **Real-time liking and commenting system** (powered by AJAX with jQuery)
-- **Follow/unfollow functionality** for personalized content feeds
-- **Full user profile management** (update name, username, profile picture, email, password, or delete account)
-- **Article editing capabilities** (modify content, thumbnail, title, and category)
-- **Real-time messaging system** for instant user communication (AJAX powered)
-- **Responsive UI** built with Bootstrap and AJAX for an interactive experience
-- **Secure and efficient backend** using Laravel 11
+- **User-Generated Content**: Users can create and publish articles with customizable thumbnails, titles, and categories.
+- **Real-Time Interaction**:
+  - AJAX-powered liking and commenting system for instant engagement.
+  - Real-time messaging system for user communication.
+- **Follow/Unfollow System**: Users can follow and unfollow other creators to personalize their content feed.
+- **User Profile Management**:
+  - Update profile details (name, username, profile picture, email, password).
+  - Account deletion option.
+- **Article Management**:
+  - Users can edit content, thumbnails, titles, and categories at any time.
+- **Responsive UI**: Built with Bootstrap for an optimal viewing experience on all devices.
+- **Secure Backend**: Developed with Laravel 11 for efficient and secure data management.
 
-## Technologies Used
-- Laravel 11
-- HTML, CSS, JavaScript
-- jQuery & AJAX
-- Bootstrap
-- MySQL
+## Tech Stack
+- **Frontend**: HTML, CSS, JavaScript, jQuery, Bootstrap, AJAX
+- **Backend**: Laravel 11 (PHP Framework)
+- **Database**: MySQL
 
 ## Installation
-```sh
-git clone https://github.com/your-repo/writely.git
-cd writely
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate --seed
-php artisan serve
-```
+### Prerequisites
+Ensure you have the following installed:
+- PHP (>=8.1)
+- Composer
+- MySQL
+- Node.js & npm
+
+### Steps
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/writely.git
+   cd writely
+   ```
+2. Install dependencies:
+   ```sh
+   composer install
+   npm install
+   ```
+3. Set up the environment file:
+   ```sh
+   cp .env.example .env
+   ```
+   Configure database and other credentials in the `.env` file.
+4. Generate application key:
+   ```sh
+   php artisan key:generate
+   ```
+5. Run database migrations and seed data:
+   ```sh
+   php artisan migrate --seed
+   ```
+6. Start the development server:
+   ```sh
+   php artisan serve
+   ```
+   The application should now be accessible at `http://127.0.0.1:8000`.
 
 ## Usage
-### For Users:
-1. Sign up and create a profile.
-2. Publish articles with a title, thumbnail, and category.
-3. Like and comment on articles in real time.
-4. Follow other users to personalize your content feed.
-5. Edit or delete your articles anytime.
-6. Engage in real-time chat with other users.
-
-### For Admins:
-1. Manage user accounts and content.
-2. Oversee community interactions (likes, comments, and messages).
-3. Ensure smooth platform operation.
+- Register/Login to create an account.
+- Start posting articles with thumbnails, titles, and categories.
+- Interact with other users by liking, commenting, and following creators.
+- Engage in real-time messaging with other users.
+- Manage your profile and articles with ease.
 
 ## Author
 Created by **Ebenhaiser Jonathan Caprisiano**  
 Connect with me on [LinkedIn](https://www.linkedin.com/in/ebenhaiser-caprisiano/)
+
