@@ -25,7 +25,7 @@ Writely is a dynamic multi-user blogging platform that allows users to create, s
 ## Installation
 ### Prerequisites
 Ensure you have the following installed:
-- PHP (>=8.1)
+- PHP (>=8.4)
 - Composer
 - MySQL
 - Node.js & npm
