@@ -3,12 +3,12 @@
         font-size: 20px;
         font-weight: 700;
     }
-
+    
     .sidebar-link .hide-menu {
         font-size: 18 px;
         font-weight: 700px
     }
-
+    
     .sidebar-footer {
         position: absolute;
         bottom: 0;
@@ -24,8 +24,8 @@
                 <img src="{{ asset('assets/images/logos/writely-logo.png') }}" height="50" alt="" />
                 <span class="my-auto">
                     <h1 style="font-weight: 600; font-family: 'Varela Round', serif; font-style: normal;"
-                        class="text-dark-emphasis my-auto">
-                        Writely</h1>
+                    class="text-dark-emphasis my-auto">
+                    Writely</h1>
                 </span>
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -72,36 +72,36 @@
                     </a>
                 </li>
                 @if (Auth::check())
-                    <li class="sidebar-item {{ request()->routeIs('messages') ? 'selected' : '' }}">
-                        <a class="sidebar-link {{ request()->routeIs('messages') ? 'active' : '' }}"
-                            href="{{ route('messages') }}" aria-expanded="false">
-                            <span class="sidebar-icon">
-                                <i class='bx bx-chat'></i>
-                            </span>
-                            <span class="hide-menu">Messages</span>
-                        </a>
-                    </li>
+                <li class="sidebar-item {{ request()->routeIs('messages') ? 'selected' : '' }}">
+                    <a class="sidebar-link {{ request()->routeIs('messages') ? 'active' : '' }}"
+                        href="{{ route('messages') }}" aria-expanded="false">
+                        <span class="sidebar-icon">
+                            <i class='bx bx-chat'></i>
+                        </span>
+                        <span class="hide-menu">Messages</span>
+                    </a>
+                </li>
                 @endif
             </ul>
         </nav>
     </div>
-
+    
     <!-- Sidebar footer with "Write" link at the bottom -->
     @if (Auth::check())
-        <div class="sidebar-footer mt-auto p-3">
-            <a class="btn btn-info w-100 mb-2 d-flex gap-2 justify-content-center" href="{{ route('post.new') }}">
-                <i class="bi bi-pencil"></i>Write
-            </a>
-            <a class="btn btn-primary w-100 d-flex gap-2 justify-content-center"
-                href="{{ route('profile', Auth::user()->username) }}">
-                <i class="bi bi-person-circle"></i>Profile
-            </a>
-        </div>
-    @else
-        <div class="sidebar-footer mt-auto p-3">
-            <a class="btn btn-primary w-100 mb-2 d-flex gap-2 justify-content-center" href="{{ route('login') }}">
-                <i class="bi bi-box-arrow-in-right"></i>Login
-            </a>
-        </div>
-    @endif
+    <div class="sidebar-footer mt-auto p-3">
+        <a class="btn btn-info w-100 mb-2 d-flex gap-2 justify-content-center" href="{{ route('post.new') }}">
+            <i class="bi bi-pencil"></i>Write
+        </a>
+        <a class="btn btn-primary w-100 d-flex gap-2 justify-content-center"
+        href="{{ route('profile', Auth::user()->username) }}">
+        <i class="bi bi-person-circle"></i>Profile
+    </a>
+</div>
+@else
+<div class="sidebar-footer mt-auto p-3">
+    <a class="btn btn-primary w-100 mb-2 d-flex gap-2 justify-content-center" href="/login?ReturnURL={{ request()->path() }}">
+        <i class="bi bi-box-arrow-in-right"></i>Login
+    </a>
+</div>
+@endif
 </aside>
