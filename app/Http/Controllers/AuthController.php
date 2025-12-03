@@ -53,9 +53,12 @@ class AuthController extends Controller
         }
     }
 
-    public function registerView()
+    public function registerView(Request $request)
     {
-        return view('auth.register');
+        // return view('auth.register');
+        $return_url = $request->input('return_url', session('return_url'));
+
+        return view('auth.register', ['return_url' => $return_url]);
     }
 
     public function registerSubmit(Request $request)
