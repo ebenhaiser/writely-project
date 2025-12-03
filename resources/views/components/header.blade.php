@@ -56,8 +56,11 @@
         </ul>
     </div>
     @else
+    {{-- <div class="flex-row ms-auto me-3 align-items-center justify-content-end">
+        <a href="{{ route('login', ['return_url' => url()->full()]) }}" class="btn btn-primary">Login</a>
+    </div> --}}
     <div class="flex-row ms-auto me-3 align-items-center justify-content-end">
-        <a href="/login?ReturnURL={{ request()->path() }}" class="btn btn-primary">Login</a>
+        <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
     </div>
     @endif
     

@@ -11,8 +11,32 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function loginView()
+    // public function loginView()
+    // {
+    //     return view('auth.login');
+    // }
+
+    public function loginView(Request $request)
     {
+        $previousUrl = url()->previous();
+        $currentUrl = url()->current();
+
+        // Jika sudah ada parameter return_url di URL, langsung tampilkan view
+        if ($request->has('return_url')) {
+            return view('auth.login', ['return_url' => $request->return_url]);
+        }
+
+        if (
+            $previousUrl !== $currentUrl &&
+            !str_contains($previousUrl, '/login') &&
+            !str_contains($previousUrl, '/register') &&
+            !str_contains($previousUrl, '/logout') &&
+            !str_contains($previousUrl, '/password')
+        ) {
+            // REDIRECT ke /login dengan parameter return_url
+            return redirect()->route('login', ['return_url' => $previousUrl]);
+        }
+
         return view('auth.login');
     }
 
@@ -21,9 +45,17 @@ class AuthController extends Controller
         $data = $request->only('email', 'password');
         if (Auth::attempt($data)) {
             $request->session()->regenerate();
+
+            if ($request->filled('return_url')) {
+                $return_url = $request->input('return_url');
+                return redirect($return_url);
+            }
+
             return redirect()->route('home');
         } else {
-            return redirect()->route('login')->with('error', 'Invalid email or password');
+            return back()
+                ->withInput($request->only('email', 'return_url'))
+                ->withErrors(['email' => 'Invalid credentials']);
         }
     }
 
