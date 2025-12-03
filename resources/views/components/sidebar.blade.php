@@ -99,9 +99,6 @@
 </div>
 @else
 <div class="sidebar-footer mt-auto p-3">
-    {{-- <a class="btn btn-primary w-100 mb-2 d-flex gap-2 justify-content-center" href="{{ route('login', ['return_url' => url()->full()]) }}">
-        <i class="bi bi-box-arrow-in-right"></i>Login
-    </a> --}}
     <a class="btn btn-primary w-100 mb-2 d-flex gap-2 justify-content-center" href="{{ route('login') }}">
         <i class="bi bi-box-arrow-in-right"></i>Login
     </a>

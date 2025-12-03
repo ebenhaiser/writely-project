@@ -11,20 +11,15 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // public function loginView()
-    // {
-    //     return view('auth.login');
-    // }
-
     public function loginView(Request $request)
     {
-        $previousUrl = url()->previous();
-        $currentUrl = url()->current();
 
-        // Jika sudah ada parameter return_url di URL, langsung tampilkan view
         if ($request->has('return_url')) {
             return view('auth.login', ['return_url' => $request->return_url]);
         }
+
+        $previousUrl = url()->previous();
+        $currentUrl = url()->current();
 
         if (
             $previousUrl !== $currentUrl &&
@@ -33,7 +28,6 @@ class AuthController extends Controller
             !str_contains($previousUrl, '/logout') &&
             !str_contains($previousUrl, '/password')
         ) {
-            // REDIRECT ke /login dengan parameter return_url
             return redirect()->route('login', ['return_url' => $previousUrl]);
         }
 
