@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Models\History;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -92,6 +93,22 @@ class PostController extends Controller
         $post = Post::where('slug', $slug)->first();
         if (!$post) {
             return redirect()->route('home');
+        }
+
+        if (Auth::check()) {
+            // Gunakan firstOrCreate + save untuk menghindari query ganda
+            $history = History::firstOrCreate(
+                [
+                    'user_id' => Auth::id(),
+                    'post_id' => $post->id
+                ],
+                ['viewed_at' => now()]
+            );
+
+            // Update viewed_at hanya jika record sudah ada
+            if ($history->wasRecentlyCreated === false) {
+                $history->update(['viewed_at' => now()]);
+            }
         }
         return view('Post.show', compact('post'));
     }

@@ -7,6 +7,9 @@ use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\History;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProfileViewController extends Controller
 {
@@ -74,5 +77,20 @@ class ProfileViewController extends Controller
         $profile = User::where('username', $username)->firstOrFail();
         $posts = $profile->posts;
         return view('Profile.posts', compact('profile', 'posts'));
+    }
+
+    public function historyView($username)
+    {
+        if (!Auth::check() || Auth::user()->username != $username) {
+            return redirect()->route('profile', $username);
+        }
+        $profile = User::where('username', $username)->firstOrFail();
+        // $posts = $profile->posts;
+        $posts = Post::join('histories', 'posts.id', '=', 'histories.post_id')
+            ->where('histories.user_id', Auth::id())
+            ->select('posts.*', 'histories.viewed_at')
+            ->orderBy('histories.viewed_at', 'desc')
+            ->get();
+        return view('Profile.profile', compact('profile', 'posts'));
     }
 }
