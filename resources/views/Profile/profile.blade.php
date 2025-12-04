@@ -74,7 +74,7 @@
                         <a class="btn btn-outline-primary"
                         href="{{ route('profile.edit', $profile->username) }}">Edit Profile</a>
                     </div>
-                    @else
+                    @elseif (Auth::check() && Auth::user()->username != $profile->username)
                     <button class="btn btn-primary follow-btn" data-user-id="{{ $profile->id }}">
                         <span class="follow-text">{{ $profile->isFollowedByUser() ? 'Unfollow' : 'Follow' }}</span>
                     </button>
