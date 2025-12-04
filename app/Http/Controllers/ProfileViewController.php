@@ -81,7 +81,7 @@ class ProfileViewController extends Controller
 
     public function historyView($username)
     {
-        if (!Auth::check() || Auth::user()->username != $username) {
+        if (!Auth::check() && Auth::user()->username != $username) {
             return redirect()->route('profile', $username);
         }
         $profile = User::where('username', $username)->firstOrFail();
