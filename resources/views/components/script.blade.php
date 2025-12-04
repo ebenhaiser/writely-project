@@ -75,25 +75,7 @@
     });
 </script>
 
-{{-- search functionality --}}
-<script>
-    $(document).ready(function() {
-        const $searchInput = $("#searchInput");
-        const $clearSearch = $("#clearSearch");
-        
-        // Menampilkan tombol X jika ada teks di input
-        $searchInput.on("input", function() {
-            $clearSearch.css("display", $searchInput.val() ? "block" : "none");
-        });
-        
-        // Klik tombol X untuk menghapus input dan submit form
-        $clearSearch.on("click", function() {
-            $searchInput.val("");
-            $clearSearch.css("display", "none");
-            $searchInput.closest("form").submit(); // Kirim form otomatis dengan search kosong
-        });
-    });
-</script>
+
 
 {{-- comment --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js"></script>

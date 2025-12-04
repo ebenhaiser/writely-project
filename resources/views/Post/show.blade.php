@@ -65,6 +65,9 @@
                             </span>
                             <span class="" align="right">
                                 @if (Auth::check())
+                                <button class="btn btn-outline-primary mb-1">
+                                    <i class="bi bi-star"></i>
+                                </button>
                                 {{-- <button class="btn btn-outline-primary mb-1 like-btn" data-post-id="{{ $post->id }}">
                                     <span class="like-text">{{ $post->isLikedByUser() ? 'Unlike' : 'Like' }}</span>
                                 </button> --}}
@@ -75,10 +78,12 @@
                                 @if (Auth::check() && Auth::user()->id == $post->user_id)
                                 <a href="{{ route('post.edit', $post->slug) }}" class="btn btn-outline-primary">Edit</a>
                                 @endif
-                                <p class="mt-3 d-flex gap-3">
-                                    <i class="bi bi-hand-thumbs-up "></i>
-                                    <span class="like-count">{{ $post->likes->count() }}</span>
-                                </p>
+                                <div align="right" class="mt-3">
+                                    <div class="d-flex gap-3">
+                                        <i class="bi bi-hand-thumbs-up "></i>
+                                        <span class="like-count">{{ $post->likes->count() }}</span>
+                                    </div>
+                                </div>
                             </span>
                         </div>
                     </div>
