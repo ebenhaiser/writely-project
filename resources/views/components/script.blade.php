@@ -10,65 +10,34 @@
 {{-- CKEditor --}}
 {{-- <script>
     ClassicEditor
-        .create(document.querySelector('#ckeditor'), {
-            ckfinder: {
-                uploadUrl: "{{ route('post.upload', ['_token' => csrf_token()]) }}"
-            },
-            toolbar: [
-                'heading',
-                'bold',
-                'italic',
-                'underline',
-                'bulletedList',
-                'numberedList',
-                'imageUpload',
-                'insertTable',
-                'blockQuote',
-                'mediaEmbed',
-                'link',
-            ],
-            // plugins: [Image, ImageResizeEditing, ImageResizeHandles, /* ... */ ],
-            placeholder: "Write your own article..."
-        }).then(editor => {
-            // Menetapkan minimal height menggunakan JS
-            editor.ui.view.editable.element.style.minHeight = '300px';
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    .create(document.querySelector('#ckeditor'), {
+    ckfinder: {
+    uploadUrl: "{{ route('post.upload', ['_token' => csrf_token()]) }}"
+    },
+    toolbar: [
+    'heading',
+    'bold',
+    'italic',
+    'underline',
+    'bulletedList',
+    'numberedList',
+    'imageUpload',
+    'insertTable',
+    'blockQuote',
+    'mediaEmbed',
+    'link',
+    ],
+    // plugins: [Image, ImageResizeEditing, ImageResizeHandles, /* ... */ ],
+    placeholder: "Write your own article..."
+    }).then(editor => {
+    // Menetapkan minimal height menggunakan JS
+    editor.ui.view.editable.element.style.minHeight = '300px';
+    })
+    .catch(error => {
+    console.error(error);
+    });
 </script> --}}
 
-{{-- like toggle --}}
-<script>
-    $(document).ready(function() {
-        $('.like-btn').on('click', function() {
-            let button = $(this);
-            let postId = button.data('post-id');
-
-            let likeCountSpan = button.closest('.card').find('.like-count');
-
-            $.ajax({
-                url: "{{ route('like.toggle') }}",
-                method: "POST",
-                data: {
-                    post_id: postId,
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function(response) {
-                    button.find('.like-text').text(response.status === 'liked' ? 'Unlike' :
-                        'Like');
-                    likeCountSpan.text(response.likes);
-                },
-                error: function(xhr) {
-                    if (xhr.status === 401) {
-                        // Redirect ke halaman login jika belum login
-                        window.location.href = "{{ route('login') }}";
-                    }
-                }
-            });
-        });
-    });
-</script>
 
 {{-- follow toggle --}}
 <script>
@@ -76,10 +45,10 @@
         $('.follow-btn').on('click', function() {
             let button = $(this);
             let userId = button.data('user-id'); // Ubah dari postId ke userId
-
+            
             let followerCountSpan = button.closest('.card').find(
-                '.follower-count'); // Perbaiki variabel
-
+            '.follower-count'); // Perbaiki variabel
+            
             $.ajax({
                 url: "{{ route('follow.toggle') }}",
                 method: "POST",
@@ -90,8 +59,8 @@
                 success: function(response) {
                     // Ubah teks tombol sesuai status follow/unfollow
                     button.find('.follow-text').text(response.status === 'followed' ?
-                        'Unfollow' : 'Follow');
-
+                    'Unfollow' : 'Follow');
+                    
                     // Update jumlah follower
                     followerCountSpan.text(response.followers);
                 },
@@ -111,12 +80,12 @@
     $(document).ready(function() {
         const $searchInput = $("#searchInput");
         const $clearSearch = $("#clearSearch");
-
+        
         // Menampilkan tombol X jika ada teks di input
         $searchInput.on("input", function() {
             $clearSearch.css("display", $searchInput.val() ? "block" : "none");
         });
-
+        
         // Klik tombol X untuk menghapus input dan submit form
         $clearSearch.on("click", function() {
             $searchInput.val("");
