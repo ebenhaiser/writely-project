@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2025 at 06:12 AM
+-- Generation Time: Dec 04, 2025 at 04:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -192,6 +192,32 @@ INSERT INTO `follows` (`id`, `follower_id`, `following_id`, `created_at`, `updat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `histories`
+--
+
+CREATE TABLE `histories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `post_id` bigint(20) UNSIGNED NOT NULL,
+  `viewed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `histories`
+--
+
+INSERT INTO `histories` (`id`, `user_id`, `post_id`, `viewed_at`, `created_at`, `updated_at`) VALUES
+(5, 1, 21, '2025-12-03 01:10:40', '2025-12-03 01:10:12', '2025-12-03 01:10:40'),
+(6, 1, 34, '2025-12-03 20:26:09', '2025-12-03 01:10:25', '2025-12-03 20:26:09'),
+(7, 5, 31, '2025-12-03 18:56:07', '2025-12-03 18:49:32', '2025-12-03 18:56:07'),
+(8, 5, 30, '2025-12-03 18:49:51', '2025-12-03 18:49:51', '2025-12-03 18:49:51'),
+(9, 5, 19, '2025-12-03 18:56:32', '2025-12-03 18:56:32', '2025-12-03 18:56:32');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jobs`
 --
 
@@ -314,7 +340,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2025_02_01_160618_create_notifications_table', 1),
 (12, '2025_02_01_152342_create_comments_table', 2),
 (13, '2025_02_01_151749_create_likes_table', 3),
-(15, '2025_02_15_132037_create_messages_table', 4);
+(15, '2025_02_15_132037_create_messages_table', 4),
+(16, '2025_12_03_073520_create_histories_table', 5);
 
 -- --------------------------------------------------------
 
@@ -407,10 +434,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('rV1HmQupwsURtq7CobMaNqOrUSBcs81GyEAEH2SK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSWN2MUwzUTdxV05qZml5ZG5aaWQ3Y3ZPbWJ5NmZXRTJ1eW4zOVg1YiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1740728415),
-('UAN6k4frjnf8hnF2tw6cakNPHOWAiz28JyjY19M0', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTlVwa1NjdlVWMERtTzQxQWY5Yk9WcmU4cldUbkhtc2ZNV2JSd2NERSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9tZXNzYWdpbmcvd2l0aC9jaHVja19ub3JyaXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1740561952),
-('UXejCPVVLIxZ8jeDOj2Zz5uQk3AuVrDgKbfYDujk', 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMGNyS3d6MVZmWWx1NlBTNU94TUhzMDFIVlFrb0tId1B0bHVOb1FKbyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMDoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL21lc3NhZ2VzIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9tZXNzYWdpbmcvd2l0aC9tci5iZWFuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Nzt9', 1740561897),
-('Ve01hwuE5UZNtg50nIyCRyF2AvX7O8pTLHmIiRWG', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMnB4cG1raUpiNVpuSDdjWHl2VUhneFNNQUVTcjhpNXpmOUpiR2xEcCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9pZC9iYW5nLmdhbnRlbmciO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1740728479);
+('CzyEbPKYYqCX96xSzEXpMnDgMJ8OeQJlUIzbQq9Z', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibVB5TkFDeUxzTmg0VmUwVXhEQnJSNWQ0WTFOMnZvcE05MTVhbWVrZCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNzoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2lkL21yLmJlYW4vZWRpdCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQ2OiJodHRwOi8vbG9jYWxob3N0OjgwMDAvaWQvbWFzdGVyLnBhbnR1bi9oaXN0b3J5Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1764819419);
 
 -- --------------------------------------------------------
 
@@ -491,6 +515,14 @@ ALTER TABLE `follows`
   ADD PRIMARY KEY (`id`),
   ADD KEY `follows_follower_id_foreign` (`follower_id`),
   ADD KEY `follows_following_id_foreign` (`following_id`);
+
+--
+-- Indexes for table `histories`
+--
+ALTER TABLE `histories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `histories_user_id_foreign` (`user_id`),
+  ADD KEY `histories_post_id_foreign` (`post_id`);
 
 --
 -- Indexes for table `jobs`
@@ -596,6 +628,12 @@ ALTER TABLE `follows`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
+-- AUTO_INCREMENT for table `histories`
+--
+ALTER TABLE `histories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -617,7 +655,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -655,6 +693,13 @@ ALTER TABLE `comments`
 ALTER TABLE `follows`
   ADD CONSTRAINT `follows_follower_id_foreign` FOREIGN KEY (`follower_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `follows_following_id_foreign` FOREIGN KEY (`following_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `histories`
+--
+ALTER TABLE `histories`
+  ADD CONSTRAINT `histories_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `histories_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `likes`
