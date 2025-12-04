@@ -120,11 +120,11 @@
                                 href="{{ route('profile.comments', $profile->username) }}">Comments
                             </a>
                         </li>
-                        @if (Auth::check() && Auth::user()->username == $profile->username)
+                        {{-- @if (Auth::check() && Auth::user()->username == $profile->username)
                         <a class="nav-link {{ request()->routeIs('profile.history') ? 'active' : '' }}"
                             href="{{ route('profile.history', $profile->username) }}">History
                         </a>
-                        @endif
+                        @endif --}}
                     </ul>
                 </div>
             </div>

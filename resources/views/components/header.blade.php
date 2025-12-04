@@ -40,6 +40,11 @@
                             <i class="bi bi-gear-wide-connected"></i>
                             <p class="mb-0 fs-3">Edit Profile</p>
                         </a>
+                        <a href="{{ route('profile.history', Auth::user()->username) }}"
+                            class="d-flex align-items-center gap-3 dropdown-item">
+                            <i class="bi bi-gear-wide-connected"></i>
+                            <p class="mb-0 fs-3">History</p>
+                        </a>
                         {{-- <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                             <i class="ti ti-mail fs-6"></i>
                             <p class="mb-0 fs-3">My Account</p>

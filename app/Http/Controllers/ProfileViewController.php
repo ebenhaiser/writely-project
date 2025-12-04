@@ -91,6 +91,6 @@ class ProfileViewController extends Controller
             ->select('posts.*', 'histories.viewed_at')
             ->orderBy('histories.viewed_at', 'desc')
             ->get();
-        return view('Profile.profile', compact('profile', 'posts'));
+        return view('Profile.history', compact('profile', 'posts'));
     }
 }
