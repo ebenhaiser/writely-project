@@ -95,8 +95,7 @@ class PostController extends Controller
             return redirect()->route('home');
         }
 
-        if (Auth::check()) {
-            // Gunakan firstOrCreate + save untuk menghindari query ganda
+        if (Auth::check() && $post->user->id != Auth::id()) {
             $history = History::firstOrCreate(
                 [
                     'user_id' => Auth::id(),
@@ -105,7 +104,6 @@ class PostController extends Controller
                 ['viewed_at' => now()]
             );
 
-            // Update viewed_at hanya jika record sudah ada
             if ($history->wasRecentlyCreated === false) {
                 $history->update(['viewed_at' => now()]);
             }
