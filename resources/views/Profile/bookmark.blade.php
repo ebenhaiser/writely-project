@@ -1,16 +1,17 @@
 <x-layout>
-    <x-slot:title>Explore - Writely</x-slot:title>
+    <x-slot:title>Bookmark - Writely</x-slot:title>
+    <h1 class="mt-1 mb-5">Bookmark</h1>
     <div class="card shadow">
         <div class="card-body">
-            <form action="{{ route('explore') }}" method="get">
+            <form action="#" method="get">
                 <div class="d-flex gap-2">
                     <select name="category" id="" class="form-control">
                         <option value="">All</option>
-                        @foreach ($categories as $category)
-                        <option value="{{ $category->slug }}">
-                            {{ request('category') == $category->slug ? 'selected' : '' }}>{{ $category->name }}
+                        {{-- @foreach ($categories as $category) --}}
+                        <option value="">
+                            {{-- {{ request('category') == $category->slug ? 'selected' : '' }}>{{ $category->name }} --}}
                         </option>
-                        @endforeach
+                        {{-- @endforeach --}}
                     </select>
                     <button class="btn btn-primary">Find</button>
                 </div>
@@ -24,7 +25,7 @@
         </div>
         @empty
         <div class="col-md-12" align="center">
-            <i>No post yet.</i>
+            <i>No bookmark yet.</i>
         </div>
         @endforelse
     </div>

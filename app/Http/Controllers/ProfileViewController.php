@@ -84,13 +84,27 @@ class ProfileViewController extends Controller
         if (!Auth::check() && Auth::user()->username != $username) {
             return redirect()->route('profile', $username);
         }
-        $profile = User::where('username', $username)->firstOrFail();
+        // $profile = User::where('username', $username)->firstOrFail();
         // $posts = $profile->posts;
         $posts = Post::join('histories', 'posts.id', '=', 'histories.post_id')
             ->where('histories.user_id', Auth::id())
             ->select('posts.*', 'histories.viewed_at')
             ->orderBy('histories.viewed_at', 'desc')
             ->get();
-        return view('Profile.history', compact('profile', 'posts'));
+        // return view('Profile.history', compact('profile', 'posts'));
+        return view('Profile.history', compact('posts'));
+    }
+
+    public function bookmarkView($username)
+    {
+        if (!Auth::check() && Auth::user()->username != $username) {
+            return redirect()->route('profile', $username);
+        }
+        $posts = Post::join('bookmarks', 'post_id', '=', 'bookmarks.post_id')
+            ->where('bookmarks.user_id', Auth::id())
+            ->select('posts.*')
+            ->orderBy('bookmarks.created_at', 'desc')
+            ->get();
+        return view('Profile.bookmark', compact('posts'));
     }
 }

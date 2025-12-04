@@ -1,5 +1,5 @@
 <x-layout>
-    <x-slot:title>Explore - Writely</x-slot:title>
+    <x-slot:title>History - Writely</x-slot:title>
     <h1 class="mt-1 mb-5">History</h1>
     <div class="row">
         @forelse ($posts as $post)

@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/id/{username}/edit/deleteProfilePicture', [ProfileEditController::class, 'deleteProfilePicture'])->name('delete.profile.picture');
     Route::post('/id/{username}/edit/deleteAccount', [ProfileEditController::class, 'deleteAccount'])->name('delete.account.submit');
     Route::get('id/{username}/history', [ProfileViewController::class, 'historyView'])->name('profile.history');
+    Route::get('id/{username}/bookmark', [ProfileViewController::class, 'bookmarkView'])->name('profile.bookmark');
 
     // post
     Route::get('post/new', [PostController::class, 'new'])->name('post.new');

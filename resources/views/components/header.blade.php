@@ -45,7 +45,7 @@
                             <i class="bi bi-clock-history"></i> 
                             <p class="mb-0 fs-3">History</p>
                         </a>
-                        <a href="#" class="d-flex align-items-center gap-3 dropdown-item">
+                        <a href="{{ route('profile.bookmark', Auth::user()->username) }}" class="d-flex align-items-center gap-3 dropdown-item">
                             <i class="bi bi-bookmarks"></i> 
                             <p class="mb-0 fs-3">Bookmark</p>
                         </a>
